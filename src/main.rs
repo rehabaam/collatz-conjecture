@@ -33,6 +33,7 @@ fn check_conjecture(mut x:BigInt) {
 
             // Divide by 2
             x = x.clone() / 2;
+
 			// Print the new number
 			println!("New half {}", x);
             continue;
