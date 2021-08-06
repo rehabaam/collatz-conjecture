@@ -1,3 +1,9 @@
+///////////////////////////////////////////////////////////////////////////////////////
+//                                                                                   //
+//                          Collatz conjecture (known as 3x+1)                       //
+//                                                                                   //
+///////////////////////////////////////////////////////////////////////////////////////
+
 extern crate num;
 use std::time::{SystemTime};
 use num::bigint::{BigInt, Sign};
@@ -59,7 +65,6 @@ fn check_conjecture(mut x:BigInt) {
         // Print the new number
         println!("new Even {}", x);
     }
-
 }
 
 // Just returns even or odd
