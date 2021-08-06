@@ -28,36 +28,36 @@ fn check_conjecture(mut x:BigInt) {
         // Handle even cases
         if is_even(x.clone(), zero.clone()) {
 
-		// Print the input number
-		println!("Is Even {}",x);
+            // Print the input number
+            println!("Is Even {}",x);
 
-		// Divide by 2
-		x = x.clone() / 2;
+            // Divide by 2
+            x = x.clone() / 2;
 
-		// Print the new number
-		println!("New half {}", x);
+            // Print the new number
+            println!("New half {}", x);
 
-		continue;
+            continue;
         }
 
         // If it reaches 1, then stop, no need to get stuck in a forever loop
-	if x == one {
+        if x == one {
 
-		// Print the time taken for reaching 1
-		let t2 = t1.elapsed();
-		println!("Time taken to reach 1: {:?}", t2);
-		
-		break;
-	}
+            // Print the time taken for reaching 1
+            let t2 = t1.elapsed();
+            println!("Time taken to reach 1: {:?}", t2);
+            
+            break;
+        }
 
         // Print the input number
-	println!("Is Odd {}", x);
+        println!("Is Odd {}", x);
 
-	// Do 3x+1 magic
-	x =(x.clone() * 3) + 1;
+        // Do 3x+1 magic
+        x =(x.clone() * 3) + 1;
 
-	// Print the new number
-	println!("new Even {}", x);
+        // Print the new number
+        println!("new Even {}", x);
     }
 
 }
