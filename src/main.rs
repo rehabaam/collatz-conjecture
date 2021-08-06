@@ -6,10 +6,9 @@ use num::bigint::{BigInt, Sign};
 fn main() {
 
     // Choose a number 
-    // let x:i128 = 311241242214242535334434343442434;
-
     let x = BigInt::new(Sign::Plus, vec![10, 1]);
     let f = num::pow(x, 300);
+    
     // Starts the fun!!
     check_conjecture(f);
 }
