@@ -5,7 +5,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 
 extern crate num;
-use std::time::{SystemTime};
+use std::time::SystemTime;
 use num::bigint::{BigInt, Sign};
 
 // Break the conjecture
