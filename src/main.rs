@@ -10,7 +10,6 @@ use num::bigint::{BigInt, Sign};
 
 // Break the conjecture
 fn main() {
-
     // Choose a number 
     let x = BigInt::new(Sign::Plus, vec![10, 1]);
     let f = num::pow(x, 300);
@@ -19,55 +18,43 @@ fn main() {
     check_conjecture(f);
 }
 
-// validate Collatz conjecture 
-fn check_conjecture(mut x:BigInt) {
-
+// Validate Collatz conjecture 
+fn check_conjecture(mut x: BigInt) {
     let one = BigInt::from(1);
-    let zero = BigInt::from(0);
+    let two = BigInt::from(2);
+    let three = BigInt::from(3);
 
-    // Sstart the timer
+    // Start the timer
     let t1 = SystemTime::now();
-    println!("First number {}",x);
+    let mut steps = 0u64;
+    
+    println!("Starting number: {}", x);
+    println!("----------------------------------------");
 
     loop {
-
-        // Handle even cases
-        if is_even(x.clone(), zero.clone()) {
-
-            // Print the input number
-            println!("Is Even {}",x);
-
-            // Divide by 2
-            x = x.clone() / 2;
-
-            // Print the new number
-            println!("New half {}", x);
-
-            continue;
-        }
-
-        // If it reaches 1, then stop, no need to get stuck in a forever loop
+        // If it reaches 1, then stop
         if x == one {
-
-            // Print the time taken for reaching 1
             let t2 = t1.elapsed();
-            println!("Time taken to reach 1: {:?}", t2);
-            
+            println!("----------------------------------------");
+            println!("Reached 1 in {} steps", steps);
+            println!("Time taken: {:?}", t2);
             break;
         }
 
-        // Print the input number
-        println!("Is Odd {}", x);
+        steps += 1;
 
-        // Do 3x+1 magic
-        x =(x.clone() * 3) + 1;
-
-        // Print the new number
-        println!("new Even {}", x);
+        // Handle even cases - use bit shift for efficiency
+        if is_even(&x) {
+            x /= &two;
+        } else {
+            // Handle odd cases - 3x + 1
+            let next = &x * &three + &one;
+            x = next;
+        }
     }
 }
 
-// Just returns even or odd
-fn is_even(x:BigInt, zero:BigInt) -> bool {
-    x % 2 == zero
+// Check if number is even using modulo operation
+fn is_even(x: &BigInt) -> bool {
+    (x % 2) == BigInt::from(0)
 }
