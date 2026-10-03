@@ -4,13 +4,15 @@
 //                                                                                   //
 ///////////////////////////////////////////////////////////////////////////////////////
 
-use std::time::SystemTime;
-use num::bigint::BigInt;
+use std::time::Instant;
+use num::bigint::{BigInt, Sign};
 use num::pow;
 use num::Integer;
 
 fn main() {
-    let start = pow(BigInt::from(10u32), 300);
+    // (2^32 + 10)^300, same starting number as before so runs stay comparable
+    let base = BigInt::new(Sign::Plus, vec![10, 1]);
+    let start = pow(base, 300);
     check_conjecture(start);
 }
 
@@ -19,7 +21,7 @@ fn check_conjecture(mut x: BigInt) {
     let two = BigInt::from(2u32);
     let three = BigInt::from(3u32);
 
-    let t1 = SystemTime::now();
+    let t1 = Instant::now();
     let mut steps = 0u64;
 
     println!("Starting number: {}", x);
@@ -27,7 +29,7 @@ fn check_conjecture(mut x: BigInt) {
 
     loop {
         if x == one {
-            let elapsed = t1.elapsed().expect("SystemTime error");
+            let elapsed = t1.elapsed();
             println!("----------------------------------------");
             println!("Reached 1 in {} steps", steps);
             println!("Time taken: {:?}", elapsed);
